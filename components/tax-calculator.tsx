@@ -409,7 +409,7 @@ export function TaxCalculator() {
                         transition={{ duration: 0.7, delay: 0.3 }}
                         className="lg:col-span-4"
                     >
-                         <div className="sticky top-10 bg-[#282524] p-6 md:p-8 rounded-[24px] shadow-2xl border border-white/5 relative overflow-hidden">
+                         <div className="relative bg-[#282524] p-6 md:p-8 rounded-[24px] shadow-2xl border border-white/5 overflow-hidden lg:sticky lg:top-10">
                              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#FF5E3A]/40 to-transparent" />
                              
                              <h3 className="text-[22px] font-semibold text-white mb-8 tracking-tight">Your Estimate</h3>

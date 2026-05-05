@@ -14,11 +14,11 @@ export default function GlassProjectLanding() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="flex-1 w-full flex flex-col relative"
+        className="relative flex w-full flex-1 flex-col overflow-x-hidden"
       >
         {/* Floating Capsule Header */}
         <div className="absolute top-6 md:top-8 left-0 w-full flex justify-center z-50 px-4">
-          <header className="flex items-center justify-between px-6 py-3 rounded-full bg-black/10 backdrop-blur-xl border border-white/20 shadow-lg w-full max-w-3xl">
+          <header className="flex w-full max-w-[calc(100vw-2rem)] items-center justify-between rounded-full border border-white/20 bg-black/10 px-4 py-3 shadow-lg backdrop-blur-xl sm:max-w-3xl sm:px-6">
             <div className="flex items-center gap-2">
               <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.4)]">
                 <div className="w-2 h-2 rounded-full bg-black" />
@@ -49,7 +49,7 @@ export default function GlassProjectLanding() {
         </div>
 
         {/* Hero Section with Image Background (primary) */}
-        <main className="relative z-10 flex min-h-screen w-full flex-col items-center justify-between overflow-hidden px-6 pb-12 pt-[25vh] text-center">
+        <main className="relative z-10 flex min-h-screen min-h-[100dvh] w-full flex-col items-center justify-between overflow-hidden px-4 pb-10 pt-[clamp(7rem,22vh,12rem)] text-center sm:px-6 sm:pb-12 sm:pt-[25vh]">
           {/* Background Image */}
           <div 
             className="absolute inset-0 bg-[url('/Glass-Project.png')] bg-cover bg-center bg-no-repeat"
@@ -63,7 +63,7 @@ export default function GlassProjectLanding() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-[48px] sm:text-[64px] lg:text-[84px] font-medium tracking-tight text-white leading-[1.05] drop-shadow-md font-serif"
+              className="text-[36px] font-medium font-serif leading-[1.06] tracking-tight text-white drop-shadow-md sm:text-[48px] md:text-[56px] lg:text-[84px]"
             >
               Shape the web.<br />
               One interaction at a time.
@@ -73,15 +73,18 @@ export default function GlassProjectLanding() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="mt-12 w-full max-w-md relative"
+              className="relative mt-8 w-full max-w-md sm:mt-12"
             >
-              <div className="flex items-center p-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg">
-                <input 
-                  type="email" 
+              <div className="flex flex-col gap-2 rounded-[1.75rem] border border-white/30 bg-white/20 p-1.5 shadow-lg backdrop-blur-md sm:flex-row sm:items-center sm:rounded-full sm:gap-0">
+                <input
+                  type="email"
                   placeholder="Enter your email..."
-                  className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-white/70 px-5 text-[15px] font-medium"
+                  className="w-full min-w-0 flex-1 rounded-full border-none bg-transparent px-4 py-3 text-[15px] font-medium text-white outline-none placeholder:text-white/70 sm:px-5 sm:py-2"
                 />
-                <button className="bg-black text-white px-6 py-3 rounded-full text-[14px] font-medium hover:bg-black/80 transition-all flex items-center justify-center whitespace-nowrap shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                <button
+                  type="button"
+                  className="flex w-full shrink-0 items-center justify-center rounded-full bg-black px-6 py-3 text-[14px] font-medium text-white shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all hover:bg-black/80 sm:w-auto sm:py-3"
+                >
                   Get updates
                 </button>
               </div>
@@ -93,7 +96,7 @@ export default function GlassProjectLanding() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
-            className="relative z-10 mt-auto max-w-2xl mx-auto pt-20"
+            className="relative z-10 mx-auto mt-auto max-w-2xl pt-12 sm:pt-20"
           >
             <p className="text-[14px] sm:text-[15px] text-white/80 leading-relaxed font-medium text-center drop-shadow-md">
               Glass Project is a design lab and test site for building interactive web
@@ -108,7 +111,7 @@ export default function GlassProjectLanding() {
         {/* Bento UI showcase (secondary — below hero; typography aligned with TaxCalculator header + design.md §2) */}
         <section
           aria-labelledby="bento-showcase-heading"
-          className="relative z-[20] shrink-0 bg-[#ece8e6] pt-24 pb-10 md:pt-28 md:pb-12 lg:pb-10"
+          className="relative z-[20] shrink-0 overflow-x-hidden bg-[#ece8e6] py-16 sm:py-20 md:py-28 lg:pb-20"
         >
           <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 lg:px-[3rem]">
             <header className="mb-2 text-center md:mb-4">
@@ -118,7 +121,7 @@ export default function GlassProjectLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px 0px" }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="mb-6 text-[36px] font-medium leading-[1.05] tracking-tight text-gray-900 font-serif sm:text-[48px] md:text-[56px]"
+                className="mb-4 text-[28px] font-medium font-serif leading-[1.08] tracking-tight text-gray-900 sm:mb-6 sm:text-[36px] sm:leading-[1.06] md:text-[44px] md:leading-[1.05] lg:text-[56px]"
               >
                 Interactive glass UI.
                 <br className="hidden sm:block" />
@@ -137,8 +140,8 @@ export default function GlassProjectLanding() {
               </motion.p>
             </header>
 
-            <div className="-mx-6 overflow-x-auto px-6 pb-0 md:-mx-10 md:px-10 lg:-mx-[3rem] lg:px-[3rem]">
-              <div className="mx-auto flex min-w-0 justify-center">
+            <div className="mx-auto w-full max-w-full px-0 pb-0 pt-5 sm:px-0 sm:pt-8 lg:max-w-none lg:pt-20">
+              <div className="mx-auto flex w-full min-w-0 justify-center">
                 <GlassProjectBento />
               </div>
             </div>

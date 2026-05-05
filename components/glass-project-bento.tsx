@@ -2,8 +2,9 @@
 
 /**
  * Bento showcase from `action-bento-ui.md`.
- * Inner layout grid width: 400 + gap + (266 + gap + 220) = **958px** with **36px** gaps; outer `zoom` scales the showcase
- * to cover more viewport without rewriting every pixel value (see below).
+ * Inner layout grid width: 400 + gap + (266 + gap + 220) = **958px** with **36px** gaps (desktop `lg+`). Below `lg`,
+ * the same tiles stack vertically; on **`lg+`**, a transform scale wrapper (not CSS `zoom`) keeps the layout
+ * width at **958px** while matching the prior ~110% visual size—without widening the document or scroll boxes.
  * Colors aligned to `design.md` tokens (#282524, #363332, #1a1919, #FF5E3A, #898483, light wash `#ece8e6`).
  *
  * DOM ids (stable edit targets — see Project.md §8):
@@ -18,9 +19,7 @@
 import { motion, useInView } from "framer-motion";
 import { useCallback, useRef, useState } from "react";
 
-/** Uniform viewport scale (`zoom`) — tweak before rewriting pixel geometry. Keep below ~1.2 if gutters should breathe. */
-const BENTO_VIEWPORT_ZOOM = 1.1;
-/** Inter-card rhythm: gap-[36px] on every outer flex row/column between major panels (was 24px). */
+/** Inter-card rhythm on desktop (`lg:`): gap-[36px] on outer flex rows/columns between major panels. */
 
 const CARD = "bg-[#282524]";
 const SURFACE = "bg-[#363332]";
@@ -78,14 +77,18 @@ export function GlassProjectBento() {
   return (
     <div
       ref={rootRef}
-      className="relative flex min-h-0 min-w-[958px] items-start justify-center overflow-visible bg-[#ece8e6] px-8 pb-2 pt-2 font-sans"
-      style={{ zoom: BENTO_VIEWPORT_ZOOM }}
+      className="relative mx-auto w-full min-w-0 overflow-visible bg-transparent px-4 pb-8 pt-2 font-sans sm:max-w-xl sm:px-5 md:max-w-2xl lg:max-w-none lg:min-h-[min(100vh,940px)] lg:bg-[#ece8e6] lg:px-8 lg:pt-20"
     >
-      {/* LAYER 1: BENTO GRID */}
-      <div className="relative z-10 flex w-[958px] shrink-0 items-end gap-[36px]">
+      {/*
+        Scale lives on an inner wrapper: CSS `zoom` inflates laid-out width in some browsers and causes
+        unwanted x/y scrollbars. `transform: scale()` does not expand the layout box; overflow is clipped horizontally.
+      */}
+      <div className="relative flex w-full min-w-0 flex-col lg:mx-auto lg:w-[958px] lg:origin-top lg:scale-110">
+        {/* LAYER 1: BENTO GRID */}
+        <div className="relative z-10 flex w-full shrink-0 flex-col gap-6 lg:flex-row lg:items-end lg:gap-[36px]">
         <motion.div
           id="profile-card"
-          className={`flex h-[600px] w-[400px] shrink-0 flex-col rounded-[36px] p-8 shadow-2xl ${CARD} mt-[48px]`}
+          className={`mx-auto mt-0 flex min-h-[min(520px,70vh)] w-full max-w-xl shrink-0 flex-col rounded-[28px] p-6 shadow-2xl sm:p-7 lg:mx-0 lg:mt-[48px] lg:h-[600px] lg:min-h-0 lg:max-w-none lg:w-[400px] lg:rounded-[36px] lg:p-8 ${CARD}`}
           initial={fadeUpReveal.hidden}
           animate={
             bentoInView
@@ -220,11 +223,11 @@ export function GlassProjectBento() {
         </motion.div>
 
         {/* RIGHT */}
-        <div className="flex w-[522px] flex-col gap-[36px]">
-          <div className="flex items-start gap-[36px]">
+        <div className="flex w-full flex-col gap-6 lg:w-[522px] lg:gap-[36px]">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-[36px]">
             <motion.div
               id="ailab-card"
-              className={`relative z-20 -mt-[28px] h-[248px] w-[266px] shrink-0 overflow-hidden rounded-[36px] p-5 shadow-2xl ${CARD}`}
+              className={`relative z-20 mt-0 h-[228px] w-full shrink-0 overflow-hidden rounded-[28px] p-5 shadow-2xl sm:h-[236px] lg:-mt-[28px] lg:h-[248px] lg:w-[266px] lg:rounded-[36px] ${CARD}`}
               initial={{ opacity: 0, y: 32, scale: 0.96 }}
               animate={
                 bentoInView
@@ -312,10 +315,10 @@ export function GlassProjectBento() {
               </svg>
             </motion.div>
 
-            <div className="flex w-[220px] shrink-0 flex-col gap-[36px]">
+            <div className="flex w-full shrink-0 flex-col gap-6 lg:w-[220px] lg:gap-[36px]">
               <motion.div
                 id="controls-card"
-                className={`relative z-30 -mt-[60px] flex h-[236px] flex-col justify-between rounded-[32px] p-6 shadow-2xl ${CARD}`}
+                className={`relative z-30 mt-0 flex min-h-[220px] w-full flex-col justify-between rounded-[28px] p-6 shadow-2xl lg:-mt-[60px] lg:h-[236px] lg:rounded-[32px] ${CARD}`}
                 initial={{ opacity: 0, x: 26, scale: 0.96 }}
                 animate={
                   bentoInView
@@ -389,7 +392,7 @@ export function GlassProjectBento() {
 
               <motion.div
                 id="dicom-card"
-                className="flex h-[220px] flex-col justify-between rounded-[32px] bg-white p-5 shadow-2xl"
+                className="flex min-h-[200px] w-full flex-col justify-between rounded-[28px] bg-white p-5 shadow-2xl lg:h-[220px] lg:rounded-[32px]"
                 initial={{ opacity: 0, y: 28, scale: 0.97 }}
                 animate={
                   bentoInView
@@ -477,7 +480,7 @@ export function GlassProjectBento() {
 
           <motion.div
             id="chest-card"
-            className={`relative flex h-[220px] justify-between overflow-hidden rounded-[36px] p-7 shadow-2xl ${CARD}`}
+            className={`relative flex min-h-0 flex-col gap-5 overflow-hidden rounded-[28px] p-6 shadow-2xl sm:rounded-[32px] lg:h-[220px] lg:flex-row lg:justify-between lg:gap-0 lg:rounded-[36px] lg:p-7 ${CARD}`}
             initial={{ opacity: 0, y: 36, scale: 0.97 }}
             animate={
               bentoInView
@@ -493,7 +496,7 @@ export function GlassProjectBento() {
             whileTap={{ scale: 0.994 }}
           >
             <motion.div
-              className="relative z-10 flex max-w-[200px] flex-col justify-between"
+              className="relative z-10 flex max-w-none flex-col justify-between lg:max-w-[200px]"
               initial={{ opacity: 0, x: -14 }}
               animate={
                 bentoInView
@@ -520,7 +523,7 @@ export function GlassProjectBento() {
             </motion.div>
 
             <motion.div
-              className={`relative flex h-full w-[224px] shrink-0 items-center justify-center overflow-hidden rounded-[24px] border border-white/5 ${DEEP}`}
+              className={`relative flex aspect-[5/4] h-auto min-h-[180px] w-full shrink-0 items-center justify-center overflow-hidden rounded-[20px] border border-white/5 sm:aspect-video lg:aspect-auto lg:h-full lg:w-[224px] lg:rounded-[24px] ${DEEP}`}
               initial={{ opacity: 0, scale: 0.94 }}
               animate={
                 bentoInView
@@ -567,11 +570,11 @@ export function GlassProjectBento() {
         </div>
       </div>
 
-      {/* LAYER 2: glass overlay */}
-      <div className="pointer-events-none absolute inset-0 z-50 flex items-center justify-center">
+      {/* LAYER 2: glass KPI — stacked in-document on small screens; centered overlay on lg+ */}
+      <div className="relative z-20 mt-2 flex w-full justify-center px-0 lg:pointer-events-none lg:absolute lg:inset-0 lg:z-50 lg:mt-0 lg:items-center lg:px-0">
         <motion.div
           id="popup-card"
-          className="pointer-events-auto relative flex h-[260px] w-[464px] flex-row justify-between overflow-hidden rounded-[40px] border-[1.5px] border-white/40 bg-gradient-to-br from-white/50 via-white/20 to-white/5 p-8 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] backdrop-blur-[48px]"
+          className="pointer-events-auto relative flex w-full max-w-lg flex-col justify-between gap-6 overflow-hidden rounded-[28px] border-[1.5px] border-white/40 bg-gradient-to-br from-white/50 via-white/20 to-white/5 p-6 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] backdrop-blur-[48px] sm:max-w-xl sm:flex-row sm:gap-0 sm:rounded-[36px] sm:p-7 lg:h-[260px] lg:w-[464px] lg:max-w-none lg:rounded-[40px] lg:p-8"
           initial={{ opacity: 0, scale: 0.88, y: 52, rotateX: 10 }}
           animate={
             bentoInView
@@ -599,7 +602,7 @@ export function GlassProjectBento() {
           whileTap={{ scale: 0.99 }}
         >
           <motion.div
-            className="flex w-[55%] flex-col justify-between"
+            className="flex w-full flex-1 flex-col justify-between sm:min-w-0 lg:w-[55%] lg:flex-none"
             initial={{ opacity: 0, x: -18 }}
             animate={
               bentoInView
@@ -615,7 +618,7 @@ export function GlassProjectBento() {
                 : { opacity: 0, x: -18 }
             }
           >
-            <h2 className="w-full text-[24px] font-semibold leading-[1.15] tracking-tight text-gray-900">
+            <h2 className="w-full text-[20px] font-semibold leading-[1.2] tracking-tight text-gray-900 sm:text-[22px] lg:text-[24px]">
               AI cuts ER wait:
               <br />
               1h10 saved on visits
@@ -632,7 +635,7 @@ export function GlassProjectBento() {
           </motion.div>
 
           <motion.div
-            className="flex h-full items-end gap-5 pb-2 pr-2"
+            className="flex w-full items-end justify-center gap-4 pb-0 pr-0 sm:gap-5 sm:pb-2 sm:pr-2 lg:h-full lg:w-auto lg:justify-end"
             initial={{ opacity: 0, x: 22 }}
             animate={
               bentoInView
@@ -695,6 +698,7 @@ export function GlassProjectBento() {
             </motion.div>
           </motion.div>
         </motion.div>
+      </div>
       </div>
     </div>
   );

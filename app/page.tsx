@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function GlassProjectLanding() {
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
+    <div className="flex min-h-screen flex-col bg-[#b3a8a6] font-sans">
       {/* Main App Shell / Container */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -63,7 +63,7 @@ export default function GlassProjectLanding() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-[36px] font-medium font-serif leading-[1.06] tracking-tight text-white drop-shadow-md sm:text-[48px] md:text-[56px] lg:text-[84px]"
+              className="text-[36px] font-medium leading-[1.06] tracking-tight text-white drop-shadow-md sm:text-[48px] md:text-[56px] lg:text-[84px]"
             >
               Shape the web.<br />
               One interaction at a time.
@@ -111,7 +111,7 @@ export default function GlassProjectLanding() {
         {/* Bento UI showcase (secondary — below hero; typography aligned with TaxCalculator header + design.md §2) */}
         <section
           aria-labelledby="bento-showcase-heading"
-          className="relative z-[20] shrink-0 overflow-x-hidden bg-[#ece8e6] py-16 sm:py-20 md:py-28 lg:pb-20"
+          className="relative z-[20] shrink-0 overflow-x-hidden bg-[#b3a8a6] py-16 sm:py-20 md:py-28 lg:pb-20"
         >
           <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 lg:px-[3rem]">
             <header className="mb-2 text-center md:mb-4">
@@ -121,18 +121,18 @@ export default function GlassProjectLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px 0px" }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="mb-4 text-[28px] font-medium font-serif leading-[1.08] tracking-tight text-gray-900 sm:mb-6 sm:text-[36px] sm:leading-[1.06] md:text-[44px] md:leading-[1.05] lg:text-[56px]"
+                className="mb-4 text-[28px] font-semibold leading-[1.08] tracking-tight text-[#151823] sm:mb-6 sm:text-[36px] sm:leading-[1.06] md:text-[44px] md:leading-[1.05] lg:text-[56px]"
               >
                 Interactive glass UI.
                 <br className="hidden sm:block" />
-                <span className="text-[#898483]">Panels, depth, and motion.</span>
+                <span className="text-white/80">Panels, depth, and motion.</span>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px 0px" }}
                 transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="mx-auto max-w-2xl text-[16px] font-medium leading-relaxed text-gray-600 md:text-[18px]"
+                className="mx-auto max-w-2xl text-[16px] font-medium leading-relaxed text-white/72 md:text-[18px]"
               >
                 A medical-imaging-inspired bento: frosted glass, dark panels, tactile toggles,
                 and motion that ramps as you scroll into view—built on the site&rsquo;s single accent

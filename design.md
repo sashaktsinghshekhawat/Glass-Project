@@ -14,8 +14,7 @@ Living reference for **colors**, **typography**, and **Tailwind-aligned usage**.
 
 ### Typography philosophy
 
-- **Stack:** system UI sans-serif only — **`font-sans`** in Tailwind (maps to Tailwind theme; ensure stacks include Inter, Roboto, system-ui).
-- **Hero exception:** The primary large hero headline utilizes an elegant editorial serif — **`font-serif`** in Tailwind (mapped to Playfair Display) to create a premium, award-winning feel.
+- **Stack:** sans-serif only — **`font-sans`** in Tailwind with **Inter / Roboto / SF Pro** only. Use this for **all** body text and headings.
 - **Default weight** for most UI is **medium (500)**; step up semibold/bold only as specified below.
 
 ---
@@ -93,11 +92,11 @@ Then document `bg-card`, `text-muted-on-dark`, etc. alongside this file. Until t
 | Usage | Tailwind |
 |-------|----------|
 | All UI body, headings | `font-sans` |
-| Hero primary headline | `font-serif` |
+| Hero primary headline | `font-sans` |
 
 **Recommended `tailwind` / `@theme`** `fontFamily.sans`:
 
-`ui-sans-serif, system-ui, "Inter", "Roboto", "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif`
+`"Inter", "Roboto", "SF Pro Text", "SF Pro Display"`
 
 (If `@font-face` Inter is added later, keep loading minimal weights: 400, 500, 600, 700.)
 

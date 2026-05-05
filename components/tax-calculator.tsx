@@ -345,7 +345,7 @@ export function TaxCalculator() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7 }}
-                        className="text-[36px] sm:text-[48px] md:text-[56px] font-medium tracking-tight text-white leading-[1.05] font-serif mb-6 drop-shadow-md"
+                        className="mb-6 text-[36px] font-medium leading-[1.05] tracking-tight text-white drop-shadow-md sm:text-[48px] md:text-[56px]"
                     >
                         Calculate your tax. <br className="hidden sm:block" />
                         <span className="text-[#898483]">Accurately and easily.</span>

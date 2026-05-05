@@ -77,7 +77,7 @@ export function GlassProjectBento() {
   return (
     <div
       ref={rootRef}
-      className="relative mx-auto w-full min-w-0 overflow-visible bg-transparent px-4 pb-8 pt-2 font-sans sm:max-w-xl sm:px-5 md:max-w-2xl lg:max-w-none lg:min-h-[min(100vh,940px)] lg:bg-[#ece8e6] lg:px-8 lg:pt-20"
+      className="relative mx-auto w-full min-w-0 overflow-visible bg-transparent px-4 pb-8 pt-2 font-sans sm:max-w-xl sm:px-5 md:max-w-2xl lg:max-w-none lg:min-h-[min(100vh,940px)] lg:bg-[#b3a8a6] lg:px-8 lg:pt-20"
     >
       {/*
         Scale lives on an inner wrapper: CSS `zoom` inflates laid-out width in some browsers and causes

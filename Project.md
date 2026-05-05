@@ -76,7 +76,7 @@ AD-Glass-Test/
 
 - **Router:** App Router (`app/`).
 - **Active route:** `app/page.tsx` → **`/`**.
-- **`app/layout.tsx`:** Server Component (default); loads Geist Sans, Geist Mono, Playfair Display via `next/font/google`; wraps `{children}` in `<html>` / `<body>`.
+- **`app/layout.tsx`:** Server Component (default); wraps `{children}` in `<html>` / `<body>`. Typography is controlled via global CSS `@theme` sans stack.
 - **`app/page.tsx`:** **`"use client"`** — required for Framer Motion hooks/components on the landing.
 
 **Implication:** New interactive sections on the same page can stay client-side; extracting presentational subtrees without hooks into Server Components requires passing children or splitting files carefully.
@@ -88,8 +88,8 @@ AD-Glass-Test/
 Vertical order in the DOM (scroll top → bottom):
 
 1. **Floating glass header** — `absolute`, `top-6` / `md:top-8`, `z-50`, horizontally centered capsule (`max-w-3xl`). Sits above both hero and bento visually.
-2. **Hero `<main>`** — **Primary** block: `min-h-screen`, full-bleed background image + gradient overlay, serif headline (`font-serif` → Playfair), glass email field + “Get updates”, body copy about Glass Project. Uses **Framer Motion** entrance animations.
-3. **Bento `<section>`** — **Secondary**: `aria-labelledby="bento-showcase-heading"`, `sr-only` H2 “Interactive bento UI showcase”, light wash **`bg-[#ece8e6]`** (see **`design.md`** “Light section wash”), generous top padding (`pt-28` / `md:pt-32`) so content clears the floating header when scrolled into view, `overflow-x-auto` for narrow viewports (see §8).
+2. **Hero `<main>`** — **Primary** block: `min-h-screen`, full-bleed background image + gradient overlay, large sans headline (`font-sans`), glass email field + “Get updates”, body copy about Glass Project. Uses **Framer Motion** entrance animations.
+3. **Bento `<section>`** — **Secondary**: `aria-labelledby="bento-showcase-heading"`, light wash **`bg-[#ece8e6]`** (see **`design.md`** “Light section wash”), responsive top spacing to clear lifted/scaled bento cards, horizontal overflow clipped at section level.
 4. **Footer** — Light gray bar, branding, © year, social placeholder links.
 
 **Z-index cheatsheet**
@@ -111,11 +111,10 @@ Vertical order in the DOM (scroll top → bottom):
 ### Tailwind v4
 
 - **`app/globals.css`:** `@import "tailwindcss"`; `@theme inline` maps:
-  - `--font-sans` → `--font-geist-sans`
-  - `--font-mono` → `--font-geist-mono`
-  - `--font-serif` → `--font-playfair`
+  - `--font-sans` → `"Inter", "Roboto", "SF Pro Text", "SF Pro Display"`
+  - `--font-mono` → mono fallback stack
 
-**Caveat:** `body { font-family: Arial, Helvetica, sans-serif }` remains in CSS; **`body` also has Tailwind class `font-sans`** from `layout.tsx` — Tailwind utilities generally override the stylesheet for font on `body`; use `globals.css` intentionally if aligning body font fully with Geist.
+**Font policy:** body and UI use only **Inter / Roboto / SF Pro** via `font-sans`.
 
 ### Design authority
 
@@ -185,15 +184,12 @@ These DOM `id`s are stable hooks for readers, tests, and “edit this card” re
 
 ---
 
-## 10. Fonts (`app/layout.tsx`)
+## 10. Fonts (`app/globals.css` + `font-sans`)
 
-| Font | Variable | Role |
+| Font stack | Variable / utility | Role |
 |------|-----------|------|
-| Geist | `--font-geist-sans` | Default UI (`font-sans` on body). |
-| Geist Mono | `--font-geist-mono` | Monospace theme token (minimal use on landing). |
-| Playfair Display | `--font-playfair` | **`font-serif`** for hero headline. |
-
-Subset: `latin` for all Google fonts above.
+| Inter / Roboto / SF Pro | `--font-sans` / `font-sans` | Default and only UI typography across headings and body. |
+| Mono fallback stack | `--font-mono` | Monospace utility usage only. |
 
 ---
 

@@ -121,7 +121,7 @@ export default function GlassProjectLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px 0px" }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="mb-4 text-[28px] font-semibold leading-[1.08] tracking-tight text-[#151823] sm:mb-6 sm:text-[36px] sm:leading-[1.06] md:text-[44px] md:leading-[1.05] lg:text-[56px]"
+                className="mb-4 text-[28px] font-medium leading-[1.08] tracking-tight text-[#151823] sm:mb-6 sm:text-[36px] sm:leading-[1.06] md:text-[44px] md:leading-[1.05] lg:text-[56px]"
               >
                 Interactive glass UI.
                 <br className="hidden sm:block" />

@@ -94,6 +94,14 @@ Then document `bg-card`, `text-muted-on-dark`, etc. alongside this file. Until t
 | All UI body, headings | `font-sans` |
 | Hero primary headline | `font-sans` |
 
+**Heading consistency rule**
+
+- Primary section headings must use the same typography treatment across the site:
+  - `font-sans`
+  - `font-medium`
+  - `tracking-tight`
+- Color can vary by surface, but font family and weight should stay consistent (e.g. "Interactive glass UI." and "Calculate your tax.").
+
 **Recommended `tailwind` / `@theme`** `fontFamily.sans`:
 
 `"Inter", "Roboto", "SF Pro Text", "SF Pro Display"`
